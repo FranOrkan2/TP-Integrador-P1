@@ -34,7 +34,6 @@ def actualizar_datos():
     
     try:
         with open("datos_paises.csv", "r", newline="", encoding="utf-8") as archivo:
-
             lector= csv.DictReader(archivo)
             columnas= lector.fieldnames
             filas=list(lector)
@@ -63,12 +62,23 @@ def actualizar_datos():
     except FileNotFoundError: print("Error: El archivo no existe")        
     except ValueError as e: print(f"Error: {e}")
 
-            
-
-            
+#Buscar paies por nombre completo o parcial
+def buscar_pais():
+    try:
+        nombre= input("Ingrese el pais: ").title()
+        if nombre.isalpha()!= True:raise ValueError("Caracter invalido")
+        encontrado=False
+        with open("datos_paises.csv", "r", newline="", encoding="utf-8") as archivo:
+            lector= csv.DictReader(archivo)
         
-
-
+            for lista in lector:
+                if nombre in lista["nombre"]:
+                    print(f"Nombre: {lista["nombre"]} - Poblacion: {lista["poblacion"]} - Superficie: {lista["superficie"]} - Continente: {lista["continente"]}")
+                    encontrado=True
+                    break
+            if not encontrado: print(f"{nombre} no existe")
+    except FileNotFoundError:print("Error: El archivo no existe")
+    except ValueError as e: print(f"Error: {e}")
 
 opcion=0
 while opcion != 7:
@@ -83,5 +93,6 @@ while opcion != 7:
         if opcion==1: crear_archivo()
         elif opcion==2: agregar_pais()
         elif opcion==3: actualizar_datos()
+        elif opcion==4: buscar_pais()
     except ValueError as e:
         print(f"Error: {e}")
