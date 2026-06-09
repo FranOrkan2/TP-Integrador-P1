@@ -73,12 +73,101 @@ def buscar_pais():
         
             for lista in lector:
                 if nombre in lista["nombre"]:
-                    print(f"Nombre: {lista["nombre"]} - Poblacion: {lista["poblacion"]} - Superficie: {lista["superficie"]} - Continente: {lista["continente"]}")
+                    print(f"Nombre: {lista["nombre"]} | Poblacion: {lista["poblacion"]} | Superficie: {lista["superficie"]} | Continente: {lista["continente"]}")
                     encontrado=True
                     break
             if not encontrado: print(f"{nombre} no existe")
     except FileNotFoundError:print("Error: El archivo no existe")
     except ValueError as e: print(f"Error: {e}")
+
+#Filtra por nombre, poblacion y superficie (ascendente y descendente)
+def filtrar():
+    try:
+        print("Filtrar")
+        print("1)Por Nombre")
+        print("2)Por Poblacion")
+        print("3)Por Superficie")
+        
+        filtro= int(input("Opcion: "))
+        if filtro <1 or filtro >3: raise ValueError("Valor fuera de rango")
+        paises=[]
+        with open("datos_paises.csv", "r", newline="", encoding="utf-8") as archivo:
+            lector= csv.DictReader(archivo)
+            
+            for lista in lector:
+                datos ={"nombre": lista["nombre"], "poblacion": int(lista["poblacion"]), "superficie": int(lista["superficie"]), "continente": lista["continente"]}
+                paises.append(datos)
+
+            def obtener_nombre(pais):
+                return pais["nombre"]
+            
+            def obtener_poblacion(pais):
+                return pais["poblacion"]
+            
+            def obtener_superficie(pais):
+                return pais["superficie"]
+            
+            if filtro==1:
+                paises.sort(key=obtener_nombre)
+                for pais in paises:
+                    print(f"Nombre: {pais['nombre']} | Poblacion: {pais['poblacion']} | Superficie: {pais['superficie']} | Continente: {pais["continente"]}")
+            elif filtro==2:
+                paises.sort(key=obtener_poblacion)
+                for pais in paises:
+                    print(f"Nombre: {pais['nombre']} | Poblacion: {pais['poblacion']} | Superficie: {pais['superficie']} | Continente: {pais["continente"]}")
+            elif filtro==3:
+                print("1) Ascendente  2) Descendente")
+                opciones= int(input("Opcion: "))
+                if opciones <1 or opciones>2: raise ValueError("Valor fuera de rango")
+                if opciones== 1:
+                    paises.sort(key=obtener_superficie)
+                    for pais in paises:
+                        print(f"Nombre: {pais['nombre']} | Poblacion: {pais['poblacion']} | Superficie: {pais['superficie']} | Continente: {pais["continente"]}")
+                elif opciones==2:
+                    paises.sort(key=obtener_superficie, reverse=True)
+                    for pais in paises:
+                        print(f"Nombre: {pais['nombre']} | Poblacion: {pais['poblacion']} | Superficie: {pais['superficie']} | Continente: {pais["continente"]}")
+    
+    except FileNotFoundError: print("Error: El archivo no existe")    
+    except ValueError as e:
+        print(f"Error: {e}")
+
+def estadistica():
+    
+    try:
+        paises=[]
+        with open("datos_paises.csv", "r", newline="", encoding="utf-8") as archivo:
+            lector= csv.DictReader(archivo)
+            for lista in lector:
+                for lista in lector:
+                    datos ={"nombre": lista["nombre"], "poblacion": int(lista["poblacion"]), "superficie": int(lista["superficie"]), "continente": lista["continente"]}
+                    paises.append(datos)
+            
+            menor=8300000000
+            mayor = 0
+            nombre_menor, nombre_mayor=""
+
+            for pais in paises:
+                poblacion = pais["poblacion"]
+                
+                if poblacion < menor:
+                    menor = poblacion
+                    nombre_menor = pais["nombre"]
+                
+                if poblacion> mayor:
+                    mayor = poblacion
+                    nombre_mayor = pais["nombre"]
+
+            
+
+
+
+    except FileNotFoundError: print("Error: El archivo no existe")         
+    
+    print("")
+    print("Pais con mayor poblacion")
+    print("")
+
 
 opcion=0
 while opcion != 7:
@@ -94,5 +183,6 @@ while opcion != 7:
         elif opcion==2: agregar_pais()
         elif opcion==3: actualizar_datos()
         elif opcion==4: buscar_pais()
+        elif opcion==5: filtrar()
     except ValueError as e:
         print(f"Error: {e}")
