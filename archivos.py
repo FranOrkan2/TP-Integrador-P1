@@ -1,3 +1,4 @@
+import csv
 def crear_archivo():
     """
     Crea el archivo datos_paises.csv con los datos iniciales de los países.
