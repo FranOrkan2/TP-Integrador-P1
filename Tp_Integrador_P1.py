@@ -9,6 +9,8 @@ import csv
 # Estas opciones se aplican en todas las funciones que abren archivos.
 # =============================================================
 
+continentes = {"América": 0, "Asia": 0, "Europa": 0, "África": 0, "Oceanía": 0}
+
 def crear_archivo():
     """
     Crea el archivo datos_paises.csv con los datos iniciales de los países.
@@ -49,15 +51,18 @@ def agregar_pais():
     try:
         with open("datos_paises.csv", "a", newline="", encoding="utf-8") as archivo:
             nombre = input("Ingrese el nombre del pais: ").title()
-            continente= input("Ingrese el contintente al que pertenece: ").title()
+            menu_continentes = "\nSeleccione el continente al que pertenece:\n1) América\n2) Asia\n3) Europa\n4) África\n5) Oceanía\nOpción: "
+            opcion_continente = int(input(menu_continentes))
+            
+            continente = list(continentes.keys())[opcion_continente - 1]  # Obtiene el nombre del continente según la opción seleccionada
             
             # Valida que cada palabra del nombre contenga solo letras
             if not all(palabra.isalpha() for palabra in nombre.split()): 
                 raise ValueError("Caracter invalido en el nombre")
             # Valida que cada palabra del continente contenga solo letras
-            if not all (palabra.isalpha() for palabra in continente.split()): 
-                raise ValueError("Caracter invalido en el continente")
-            
+            if continente not in continentes:
+                raise ValueError("Continente no reconocido. Ingrese uno de los siguientes: América, Asia, Europa, África, Oceanía.")
+                      
             poblacion= int(input("Ingrese la cantidad de habitantes: "))
             superficie= int(input("Ingrese la superficie en KM²: "))
 
@@ -262,7 +267,7 @@ def estadistica():
         print("=" * 50)
 
     # Inicializa el conteo de países por continente con 0 para cada continente conocido        
-    continentes = {"América": 0, "Asia": 0, "Europa": 0, "África": 0, "Oceanía": 0}
+    
 
     try:
         paises=[]
@@ -326,7 +331,7 @@ def estadistica():
 opcion=0
 while opcion != 7:
 
-    print("=" * 10 + "| Menu Principal | " + "=" * 10)
+    print("=" * 10 + "| Menú Principal | " + "=" * 10)
     print("1) Crear Lista\n2) Agregar un País\n3) Actualizar Datos\n4) Buscar\n5) Filtrar\n6) Estadísticas\n7) Salir")
     print("="*39)
     try:
@@ -342,7 +347,7 @@ while opcion != 7:
             input("\nPrograma finalizado... presione Enter para Finalizar")
             break
         if opcion != 7:
-            input("\nPresione Enter para continuar...")
+            input("\nPresione Enter para continuar...\n")
 
     except ValueError as e:
         print(f"Error: {e}")
