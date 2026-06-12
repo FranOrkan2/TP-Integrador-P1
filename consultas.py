@@ -18,7 +18,8 @@ def buscar_pais():
         
         # Acepta nombres compuestos como 'Estados Unidos'
         if not all (palabra.isalpha() for palabra in nombre.split()): 
-            raise ValueError("Caracter invalido en el nombre") #Lo cambie para que acepte nombres con espacios como "Estados Unidos"
+            raise ValueError("Caracter invalido en el nombre") 
+        
         
         encontrado=False
         
