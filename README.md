@@ -34,6 +34,7 @@ Sistema de gestión de países desarrollado en Python como Trabajo Práctico Int
 
 ✔️ Ejemplo de uso
 
+'''
 ==================== | Menu Principal | ====================
 1) Crear Lista
 2) Agregar un País
@@ -62,3 +63,4 @@ País con menor población: Alemania (83,149,300 hab.)
 El promedio de población es: 117,079,875 hab.
 El promedio de superficie es: 3,007,541 km²
 ==================================================
+'''
