@@ -1,4 +1,7 @@
-import csv
+
+from archivos import crear_archivo, agregar_pais, actualizar_datos
+from consultas import buscar_pais, filtrar
+from estadisticas import estadistica
 
 # =============================================================
 # GESTIÓN DE PAÍSES - datos_paises.csv
@@ -8,9 +11,6 @@ import csv
 #   - newline=""       → evita líneas en blanco extra en Windows
 # Estas opciones se aplican en todas las funciones que abren archivos.
 # =============================================================
-from archivos import crear_archivo, agregar_pais, actualizar_datos
-from consultas import buscar_pais, filtrar
-from estadisticas import estadistica
 
 continentes = {"América": 0, "Asia": 0, "Europa": 0, "África": 0, "Oceanía": 0}
        
