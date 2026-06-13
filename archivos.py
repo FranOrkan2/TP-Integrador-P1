@@ -1,4 +1,5 @@
 import csv
+from validaciones import pedir_texto, pedir_entero
 def crear_archivo():
     """
     Crea el archivo datos_paises.csv con los datos iniciales de los países.
@@ -36,24 +37,26 @@ def agregar_pais(continentes):
     """
     try:
         with open("datos_paises.csv", "a", newline="", encoding="utf-8") as archivo:
-            nombre = input("Ingrese el nombre del pais: ").title()
+            #nombre = input("Ingrese el nombre del pais: ").title()
+            nombre = pedir_texto("Ingrese el nombre del pais: ")
             menu_continentes = "\nSeleccione el continente al que pertenece:\n1) América\n2) Asia\n3) Europa\n4) África\n5) Oceanía\nOpción: "
             opcion_continente = int(input(menu_continentes))
             
             continente = list(continentes.keys())[opcion_continente - 1]  # Obtiene el nombre del continente según la opción seleccionada
             
             # Valida que cada palabra del nombre contenga solo letras
-            if not all(palabra.isalpha() for palabra in nombre.split()): 
-                raise ValueError("Caracter invalido en el nombre")
+            #if not all(palabra.isalpha() for palabra in nombre.split()): 
+                #raise ValueError("Caracter invalido en el nombre")
             # Valida que cada palabra del continente contenga solo letras
             if continente not in continentes:
                 raise ValueError("Continente no reconocido. Ingrese uno de los siguientes: América, Asia, Europa, África, Oceanía.")
                       
-            poblacion= int(input("Ingrese la cantidad de habitantes: "))
-            superficie= int(input("Ingrese la superficie en KM²: "))
+            
+            poblacion= pedir_entero("Ingrese la cantidad de habitantes: ")
+            superficie= pedir_entero("Ingrese la superficie en KM²: ")
 
-            if poblacion <= 0 or superficie <= 0:
-                raise ValueError("La población y la superficie deben ser enteros positivos")
+            #if poblacion <= 0 or superficie <= 0:
+                #raise ValueError("La población y la superficie deben ser enteros positivos")
             
             linea= f"{nombre},{poblacion},{superficie},{continente}\n"
             archivo.write(linea)
@@ -79,18 +82,19 @@ def actualizar_datos():
             columnas= lector.fieldnames
             filas=list(lector)
         
-        nombre_actualizar= input("Ingrese el pais: ").title()
+        nombre_actualizar= pedir_texto("Ingrese el pais: ")
         encontrado=False        
 
         for fila in filas:
             
             if nombre_actualizar == fila["nombre"]:
                 
-                poblacio_actualizar= int(input("Ingrese la poblacion: "))
-                superficie_actualizar=int(input("Ingrese la superficie en KM²: "))
+                poblacio_actualizar= pedir_entero("Ingrese la poblacion: ")
+                superficie_actualizar=pedir_entero("Ingrese la superficie en KM²: ")
 
-                if poblacio_actualizar <=0 or superficie_actualizar <=0: 
-                    raise ValueError("Ingrese valores enteros positivos")
+                #if poblacio_actualizar <=0 or superficie_actualizar <=0: 
+                    #raise ValueError("Ingrese valores enteros positivos")
+                    
                 # Actualiza solo los campos permitidos; nombre y continente no se modifican
                 fila["poblacion"] = poblacio_actualizar
                 fila["superficie"] = superficie_actualizar
