@@ -1,5 +1,5 @@
 import csv
-
+from validaciones import pedir_entero, pedir_texto
 #Buscar paies por nombre completo o parcial
 def buscar_pais():
     """
@@ -14,11 +14,11 @@ def buscar_pais():
     Retorna: ninguno
     """
     try:
-        nombre= input("Ingrese el pais: ").title()
+        nombre= pedir_texto("Ingrese el pais: ")
         
         # Acepta nombres compuestos como 'Estados Unidos'
-        if not all (palabra.isalpha() for palabra in nombre.split()): 
-            raise ValueError("Caracter invalido en el nombre") 
+        #if not all (palabra.isalpha() for palabra in nombre.split()): 
+            #raise ValueError("Caracter invalido en el nombre") 
         
         
         encontrado=False
