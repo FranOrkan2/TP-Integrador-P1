@@ -22,7 +22,7 @@ opcion=0
 while opcion != 7:
 
     continentes = {"América": 0, "Asia": 0, "Europa": 0, "África": 0, "Oceanía": 0}
-    
+    print("\n")
     print("=" * 10 + "| Menú Principal | " + "=" * 10)
     print("1) Crear Lista\n2) Agregar un País\n3) Actualizar Datos\n4) Buscar\n5) Filtrar\n6) Estadísticas\n7) Salir")
     print("="*39)
@@ -41,6 +41,8 @@ while opcion != 7:
         if opcion != 7:
             input("\nPresione Enter para continuar...\n")
 
-    except ValueError as e:
-        print(f"Error: {e}")
+    except ValueError:
+        print("\nError: Por favor ingrese un número válido entre 1 y 7.")
+    except Exception as e:
+        print(f"Error inesperado: comuníquese con el desarrollador para resolverlo.")
 

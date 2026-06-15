@@ -38,13 +38,13 @@ def agregar_pais(continentes):
             f.read()
         with open("datos_paises.csv", "a", newline="", encoding="utf-8") as archivo:
             
-            nombre = pedir_texto("Ingrese el nombre del pais: ")
+            nombre = pedir_texto("\nIngrese el nombre del pais: ")
             menu_continentes = "\nSeleccione el continente al que pertenece:\n1) América\n2) Asia\n3) Europa\n4) África\n5) Oceanía\nOpción: "
             opcion_continente = int(input(menu_continentes))
             
             continente = list(continentes.keys())[opcion_continente - 1]  # Obtiene el nombre del continente según la opción seleccionada
             
-            poblacion= pedir_entero("Ingrese la cantidad de habitantes: ")
+            poblacion= pedir_entero("\nIngrese la cantidad de habitantes: ")
             superficie= pedir_entero("Ingrese la superficie en KM²: ")
  
             linea= f"{nombre},{poblacion},{superficie},{continente}\n"

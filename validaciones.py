@@ -10,8 +10,10 @@ def pedir_texto(mensaje):
                 raise ValueError("Caracter invalido en el nombre")
             
             return nombre
-        except ValueError as e:
-            print(f"Error: {e}")
+        except ValueError:
+            print(f"Error: Por favor ingrese un nombre válido (solo letras y espacios).")
+        except Exception as e:
+            print(f"Error inesperado: {e}, comuníquese con el desarrollador para resolverlo.")
 
 def pedir_entero(mensaje):
     while True:
@@ -19,5 +21,7 @@ def pedir_entero(mensaje):
             valor= int(input(mensaje))
             if valor < 0: raise ValueError("El numero debe ser positivo")
             return valor
-        except ValueError as e:
-            print(f"Error: {e}")
+        except ValueError:
+            print(f"Error: Por favor ingrese un número válido (entero positivo).")
+        except Exception as e:
+            print(f"Error inesperado: {e}, comuníquese con el desarrollador para resolverlo.")
