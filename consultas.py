@@ -1,5 +1,5 @@
 import csv
-from validaciones import pedir_entero, pedir_texto
+from validaciones import pedir_texto
 #Buscar paies por nombre completo o parcial
 def buscar_pais():
     """
@@ -14,12 +14,8 @@ def buscar_pais():
     Retorna: ninguno
     """
     try:
+        
         nombre= pedir_texto("Ingrese el pais: ")
-        
-        # Acepta nombres compuestos como 'Estados Unidos'
-        #if not all (palabra.isalpha() for palabra in nombre.split()): 
-            #raise ValueError("Caracter invalido en el nombre") 
-        
         
         encontrado=False
         
@@ -36,7 +32,6 @@ def buscar_pais():
             if not encontrado: print(f"{nombre} no existe en el archivo")
 
     except FileNotFoundError:print("Error: El archivo no existe")
-    except ValueError as e: print(f"Error: {e}")
 
 #Filtra por nombre, poblacion y superficie (ascendente y descendente)
 def filtrar():
