@@ -12,12 +12,15 @@ def crear_archivo():
     Parámetros: ninguno
     Retorna: ninguno
     """
-    with open("datos_paises.csv", "w", newline="", encoding="utf-8") as archivo:
+    try:
+        with open("datos_paises.csv", "x", newline="", encoding="utf-8") as archivo:
         
-        lista= ["nombre,poblacion,superficie,continente\n"] 
+            lista= ["nombre,poblacion,superficie,continente\n"] 
         
-        archivo.writelines(lista)
-        print("\nLista creada\n")
+            archivo.writelines(lista)
+            print("\nLista creada\n")
+    except FileExistsError:
+        print("\nError: El archivo ya existe, no se puede crear nuevamente.")
 
 def agregar_pais(continentes):
     """
@@ -46,6 +49,7 @@ def agregar_pais(continentes):
  
             linea= f"{nombre},{poblacion},{superficie},{continente}\n"
             archivo.write(linea)
+            print(f"\n{nombre} agregado exitosamente.\n")
     except FileNotFoundError:
         print("\nError: El archivo no existe, POR FAVOR, primero cree el archivo. Opción 1 del menú.")
     except Exception as e:
@@ -90,6 +94,7 @@ def actualizar_datos():
                 escritor=csv.DictWriter(archivo, fieldnames=columnas)
                 escritor.writeheader() # escribe la línea de encabezado
                 escritor.writerows(filas)# escribe todas las filas (incluida la modificada)
+            print(f"\n{nombre_actualizar} actualizado exitosamente.\n")
         else:
             print("No se ha encontrado el pais para actualizar...")
     except FileNotFoundError: 

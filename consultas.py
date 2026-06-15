@@ -32,8 +32,10 @@ def buscar_pais():
                     break
             if not encontrado: print(f"{nombre} no existe en el archivo")
 
-    except FileNotFoundError:print("Error: El archivo no existe, POR FAVOR, primero cree el archivo. Opción 1 del menú.")
-
+    except FileNotFoundError:
+        print("Error: El archivo no existe, POR FAVOR, primero cree el archivo. Opción 1 del menú.")
+    except Exception as e:
+        print(f"Error inesperado: {e}, comuníquese con el desarrollador para resolverlo.")  
 #Filtra por nombre, poblacion y superficie (ascendente y descendente)
 def filtrar():
     """
