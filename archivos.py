@@ -48,6 +48,8 @@ def agregar_pais(continentes):
             archivo.write(linea)
     except FileNotFoundError:
         print("\nError: El archivo no existe, POR FAVOR, primero cree el archivo. Opción 1 del menú.")
+    except Exception as e:
+        print(f"Error inesperado: {e}, comuníquese con el desarrollador para resolverlo.")
     
 #Actualiza los datos de poblacion y superficie. No se puede actualizar el nombre ni el continente.
 def actualizar_datos():
@@ -90,4 +92,7 @@ def actualizar_datos():
                 escritor.writerows(filas)# escribe todas las filas (incluida la modificada)
         else:
             print("No se ha encontrado el pais para actualizar...")
-    except FileNotFoundError: print("Error: El archivo no existe, POR FAVOR, primero cree el archivo. Opción 1 del menú.")
+    except FileNotFoundError: 
+        print("Error: El archivo no existe, POR FAVOR, primero cree el archivo. Opción 1 del menú.")
+    except Exception as e:
+        print(f"Error inesperado: {e}, comuníquese con el desarrollador para resolverlo.")

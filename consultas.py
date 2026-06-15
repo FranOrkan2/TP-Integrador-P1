@@ -109,6 +109,8 @@ def filtrar():
                     paises.sort(key=obtener_superficie, reverse=(opciones == 2))
                     mostrar_paises(paises)
 
-    except FileNotFoundError: print("Error: El archivo no existe")    
-    except ValueError as e:
-        print(f"Error: {e}")
+    except FileNotFoundError: print("Error: El archivo no existe, POR FAVOR, primero cree el archivo. Opción 1 del menú.")    
+    except ValueError:
+        print(f"Error: Valor fuera de rango, ingrese un número válido para la opción seleccionada.")
+    except Exception as e:
+        print(f"Error inesperado: {e}, comuníquese con el desarrollador para resolverlo.")

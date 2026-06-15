@@ -79,5 +79,7 @@ def estadistica(continentes):
 
     except FileNotFoundError:
         print("Error: El archivo no existe. Primero cree la lista (opción 1).")
-    except ValueError as e:
-        print(f"Error: {e}")
+    except ValueError:
+        print("Error: Ingrese valores numéricos válidos.")
+    except Exception as e:
+        print(f"Error inesperado: {e}, comuníquese con el desarrollador para resolverlo.")
