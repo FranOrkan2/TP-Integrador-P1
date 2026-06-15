@@ -12,7 +12,6 @@ from estadisticas import estadistica
 # Estas opciones se aplican en todas las funciones que abren archivos.
 # =============================================================
 
-continentes = {"América": 0, "Asia": 0, "Europa": 0, "África": 0, "Oceanía": 0}
        
     
 # =============================================================
@@ -22,6 +21,8 @@ continentes = {"América": 0, "Asia": 0, "Europa": 0, "África": 0, "Oceanía": 
 opcion=0
 while opcion != 7:
 
+    continentes = {"América": 0, "Asia": 0, "Europa": 0, "África": 0, "Oceanía": 0}
+    
     print("=" * 10 + "| Menú Principal | " + "=" * 10)
     print("1) Crear Lista\n2) Agregar un País\n3) Actualizar Datos\n4) Buscar\n5) Filtrar\n6) Estadísticas\n7) Salir")
     print("="*39)
