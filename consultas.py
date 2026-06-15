@@ -15,11 +15,12 @@ def buscar_pais():
     """
     try:
         
-        nombre= pedir_texto("Ingrese el pais: ")
-        
         encontrado=False
+
         
         with open("datos_paises.csv", "r", newline="", encoding="utf-8") as archivo:
+            nombre= pedir_texto("Ingrese el pais: ")
+            
             lector= csv.DictReader(archivo)
             #Búsqueda parcial: verifica si el nombre ingresado está contenido en el campo
             for lista in lector:
@@ -31,7 +32,7 @@ def buscar_pais():
                     break
             if not encontrado: print(f"{nombre} no existe en el archivo")
 
-    except FileNotFoundError:print("Error: El archivo no existe")
+    except FileNotFoundError:print("Error: El archivo no existe, POR FAVOR, primero cree el archivo. Opción 1 del menú.")
 
 #Filtra por nombre, poblacion y superficie (ascendente y descendente)
 def filtrar():
@@ -65,15 +66,15 @@ def filtrar():
             print(f"Nombre: {pais['nombre']} | Poblacion: {pais['poblacion']} | Superficie: {pais['superficie']} | Continente: {pais['continente']}")
     
     try:
-        print("Filtrar")
-        print("1)Por Nombre")
-        print("2)Por Poblacion")
-        print("3)Por Superficie")
-        
-        filtro= int(input("Opcion: "))
-        if filtro <1 or filtro >3: raise ValueError("Valor fuera de rango")
-        paises=[]
         with open("datos_paises.csv", "r", newline="", encoding="utf-8") as archivo:
+            print("Filtrar")
+            print("1)Por Nombre")
+            print("2)Por Poblacion")
+            print("3)Por Superficie")
+            
+            filtro= int(input("Opcion: "))
+            if filtro <1 or filtro >3: raise ValueError("Valor fuera de rango")
+            paises=[]
             lector= csv.DictReader(archivo)
             
             for lista in lector:

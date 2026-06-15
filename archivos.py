@@ -31,6 +31,8 @@ def agregar_pais(continentes):
 
     """
     try:
+        with open("datos_paises.csv","r") as f:
+            f.read()
         with open("datos_paises.csv", "a", newline="", encoding="utf-8") as archivo:
             
             nombre = pedir_texto("Ingrese el nombre del pais: ")
@@ -45,7 +47,7 @@ def agregar_pais(continentes):
             linea= f"{nombre},{poblacion},{superficie},{continente}\n"
             archivo.write(linea)
     except FileNotFoundError:
-        print("Error: El archivo no existe")
+        print("\nError: El archivo no existe, POR FAVOR, primero cree el archivo. Opción 1 del menú.")
     
 #Actualiza los datos de poblacion y superficie. No se puede actualizar el nombre ni el continente.
 def actualizar_datos():
@@ -88,4 +90,4 @@ def actualizar_datos():
                 escritor.writerows(filas)# escribe todas las filas (incluida la modificada)
         else:
             print("No se ha encontrado el pais para actualizar...")
-    except FileNotFoundError: print("Error: El archivo no existe")
+    except FileNotFoundError: print("Error: El archivo no existe, POR FAVOR, primero cree el archivo. Opción 1 del menú.")

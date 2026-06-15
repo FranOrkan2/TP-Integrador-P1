@@ -28,7 +28,7 @@ while opcion != 7:
     print("="*39)
     try:
         opcion = int(input("Ingrese una opción: "))
-        if opcion<=0 or opcion >7: raise ValueError("Valor fuera de rango")
+        if opcion<=0 or opcion >7: raise ValueError("Valor fuera de rango, ingrese un número entre 1 y 7.")
         if opcion==1: crear_archivo()
         elif opcion==2: agregar_pais(continentes=continentes)
         elif opcion==3: actualizar_datos()
