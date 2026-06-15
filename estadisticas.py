@@ -11,7 +11,6 @@ def estadistica(continentes):
     Retorna: ninguno
     '''
     def contar_por_continente(paises):
-        conteo = {}
         for pais in paises:
             continente = pais["continente"]
             if continente in continentes:
@@ -29,8 +28,6 @@ def estadistica(continentes):
         print("=" * 50)
 
     # Inicializa el conteo de países por continente con 0 para cada continente conocido        
-    
-
     try:
         paises=[]
         with open("datos_paises.csv", "r", newline="", encoding="utf-8") as archivo:
